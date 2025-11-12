@@ -125,8 +125,7 @@ def get_investor_portfolio(investor_id):
 if __name__ == "__main__":  
     # Example: Query for Investor 101  
     get_investor_portfolio(101)
-
----
+```
 
 ## **4. How to Run (Docker Quickstart)**
 
@@ -142,18 +141,17 @@ Plaintext
 
 **docker-compose.yml:**
 
-YAML
-
+```YAML
 services:  
-  trino:  
-    image: trinodb/trino:latest  
-    container_name: trino-coordinator  
-    ports:  
-      - "8080:8080"  
-    volumes:  
-      # Mount your local catalog configs into the container  
-      - ./catalogs:/etc/trino/catalog
-
+    trino:  
+        image: trinodb/trino:latest  
+        container_name: trino-coordinator  
+        ports:  
+            - "8080:8080"  
+        volumes:  
+            # Mount your local catalog configs into the container  
+            - ./catalogs:/etc/trino/catalog
+```
 **Run command:**
 
 Bash
@@ -163,5 +161,4 @@ python query_investor.py
 
 ### **Key Takeaway**
 
-The magic lies in the **FROM** clause. Trino abstracts the physical location of the data, allowing you to treat distinct databases as if they were just schemas in the same engine:  
-sqlserver.dbo.investors ↔ postgres.public.stock_orders  
+The magic lies in the **FROM** clause. Trino abstracts the physical location of the data, allowing you to treat distinct databases as if they were just schemas in the same engine: sqlserver.dbo.investors ↔ postgres.public.stock_orders  
