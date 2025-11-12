@@ -20,23 +20,23 @@ To make Trino "see" your databases, you must configure **Catalogs**. These are s
 
 *Assuming SQL Server is accessible at sqlserver-host.*
 
-Properties
-
+```Properties
 connector.name=sqlserver  
 connection-url=jdbc:sqlserver://sqlserver-host:1433;databaseName=FinancialDB;encrypt=false  
 connection-user=sa  
 connection-password=StrongPassword123!
+```
 
 ### **B. PostgreSQL Catalog (postgres.properties)**
 
 *Assuming Postgres is accessible at postgres-host.*
 
-Properties
-
+```Properties
 connector.name=postgresql  
 connection-url=jdbc:postgresql://postgres-host:5432/orders_db  
 connection-user=postgres  
 connection-password=secret
+```
 
 ## **2. The Hypothetical Data Model**
 
@@ -45,6 +45,7 @@ SQL Server Table: FinancialDB.dbo.investors
 | :--- | :--- | :--- |  
 | 101 | Alice Carter | EU |  
 | 102 | Bob Smith | US |  
+
 PostgreSQL Table: orders_db.public.stock_orders  
 | order_id | investor_id | symbol | quantity |  
 | :--- | :--- | :--- | :--- |  
@@ -56,10 +57,10 @@ PostgreSQL Table: orders_db.public.stock_orders
 We will use the official trino python client.
 
 ### **Prerequisites**
-
-Bash
+```Bash
 
 pip install trino
+```
 
 ### **query_investor.py**
 
@@ -130,14 +131,15 @@ if __name__ == "__main__":
 ## **4. How to Run (Docker Quickstart)**
 
 If you don't have Trino running yet, you can spin it up instantly with Docker, mounting your catalog files.  
-**Structure:**
 
-Plaintext
+**Structure:**
+```Plaintext
 .  
 ├── docker-compose.yml  
 └── catalogs/  
     ├── sqlserver.properties  
     └── postgres.properties
+```
 
 **docker-compose.yml:**
 
@@ -154,10 +156,10 @@ services:
 ```
 **Run command:**
 
-Bash
-
+```Bash
 docker-compose up -d  
 python query_investor.py
+```
 
 ### **Key Takeaway**
 
